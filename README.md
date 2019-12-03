@@ -1,5 +1,5 @@
 # software-renderer-v1
-A software renderer implemented from scratch in Java. Features programmable shaders with vertex and fragment stages. Also contains implementation of scene graph and object/component system (like unity) for creating interactive games. Features a demo that allows you to fly a plane around procedurally generated terrain.
+A software renderer implemented from scratch in Java. Features multithreaded rendering, programmable shaders with vertex and fragment stages, and a scene graph and object/component system (like unity) for creating interactive games. Features a demo that allows you to fly a plane around procedurally generated terrain.
 
 ![Screenshot of renderer demo](https://i.ibb.co/Tghnkx4/planescreenshot.png)
 
