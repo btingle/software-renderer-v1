@@ -6,4 +6,4 @@ A software renderer implemented from scratch in Java. Features multithreaded ren
 Some notes on the demo:
 * Terrain is generated infinitely using perlin noise
 * Terrain is rendered using triplanar shading to showcase the programmable shaders
-* The game runs at around ~20 fps on my Intel i5-7200U 2.5ghz 2 core cpu
+* The game runs at around ~20 fps at 800x600 resolution on my Intel i5-7200U 2.5ghz 2 core cpu
