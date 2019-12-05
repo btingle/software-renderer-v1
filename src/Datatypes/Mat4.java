@@ -141,6 +141,21 @@ public class Mat4 {
         return new Mat4(m);
     }
 
+    public static Mat4 lookAtDir(Vec3 eye, Vec3 center, Vec3 up) {
+        Vec3 zaxis = center.sub(eye).normalize();
+        Vec3 xaxis = up.cross(zaxis).normalize();
+        Vec3 yaxis = zaxis.cross(xaxis);
+
+        float[][] m = new float[][] {
+                { xaxis.x, yaxis.x, zaxis.x, 0},
+                { xaxis.y, yaxis.y, zaxis.y, 0},
+                { xaxis.z, yaxis.z, zaxis.z, 0},
+                { 0, 0, 0, 1 }
+        };
+
+        return new Mat4(m);
+    }
+
     public static Mat4 translation(Vec3 t) {
         Mat4 mat = Mat4.Identity();
         float[][] m = mat.mat;

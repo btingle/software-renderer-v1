@@ -1,6 +1,7 @@
 package Game;
 
 import Datatypes.Color;
+import Datatypes.Vec2;
 import Datatypes.Vec3;
 import Engine.Graphics.*;
 import Engine.Scene.*;
@@ -14,15 +15,15 @@ public class GameMain {
     
     public static void InitializeScene(Scene scene) {
 
-        SceneObject lightObject, cameraObject, planeParent, planeObject, groundObject;
+        SceneObject lightObject, cameraObject, planeParent, planeObject, groundObject, enemyObject;
         Transform lightTransform, cameraTransform, planeParentTransform, planeTransform, groundTransform;
         Camera cameraComponent;
         LightSettings lightSettingsComponent;
-        Renderer planeRender, groundRender, groundRender2;
+        Renderer planeRender, groundRender, groundRender2, enemyRender;
         TerrainGenerator terrainGenerator;
 
         float near = 1f;
-        float far = 150f;
+        float far = 100f;
 
         lightTransform = new Transform(new Vec3(0, 0, 0), new Vec3(60, 0, 0), Vec3.constant(1));
         lightObject = new SceneObject("Light", lightTransform, null);
@@ -53,10 +54,8 @@ public class GameMain {
             groundTex.setScale(0.1f, 0.1f);
             groundTex2.setScale(0.1f, 0.1f);
             groundTex3.setScale(0.1f, 0.1f);
-            //Texture groundTex = new Texture(new Color(0.8f, 0.8f, 0.9f));
             Shader groundShader = new TriplanarTerrainShader(groundTex3, groundTex, groundTex3);
-            //Shader groundShader = new FlatTerrainShader(groundTex, Color.white(), 0.5f, 16);
-            terrainGenerator = new TerrainGenerator(planeTransform, 25f, 16, groundShader);
+            terrainGenerator = new TerrainGenerator(planeTransform, 20f, 16, groundShader);
         }
         catch (IOException e) {
             System.out.println("Failed to load mesh or texture");
@@ -64,8 +63,16 @@ public class GameMain {
         }
 
         planeObject.AddComponent(planeRender);
+        CollisionBox bbox = new CollisionBox(planeRender.mesh.getMin(), planeRender.mesh.getMax(), Projectile.PlayerLayer);
+        planeParent.AddComponent(bbox);
+        planeParent.AddComponent(new Shooter(4, Projectile.EnemyLayer, 5));
         planeParent.AddComponent(new PlaneControl());
         groundObject.AddComponent(terrainGenerator);
+        groundObject.AddComponent(new TurretSpawner(planeParentTransform));
+
+        //enemyObject.AddComponent(enemyRender);
+        //enemyObject.AddComponent(new Looker(planeParentTransform));
+        //cameraObject.AddComponent(new FreeCam(1));
 
         /*String[] cubemapFilenames = new String[] {
                 "badomen_lf.jpg", "badomen_dn.jpg", "badomen_ft.jpg", "badomen_rt.jpg", "badomen_up.jpg", "badomen_bk.jpg"
@@ -79,6 +86,7 @@ public class GameMain {
         scene.addSceneObject(planeParent);
         scene.addSceneObject(planeObject);
         scene.addSceneObject(groundObject);
+        //scene.addSceneObject(enemyObject);
     }
     
 }

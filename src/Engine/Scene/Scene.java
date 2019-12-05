@@ -23,9 +23,10 @@ public class Scene extends SceneBehaviour {
 
     public void UpdateScene() {
 
-        System.out.println("No objects:" + objects.size());
+        //System.out.println("No objects:" + objects.size());
 
         ArrayList<SceneObject> added = new ArrayList(toAdd);
+        added.forEach(o -> o.enabled = true);
         toAdd.clear();
 
         added.forEach(o -> o.Start());
@@ -35,6 +36,7 @@ public class Scene extends SceneBehaviour {
         objects.removeAll(toRemove);
         objects.addAll(added);
 
+        toRemove.forEach(o -> o.enabled = false);
         toRemove.clear();
     }
 

@@ -11,6 +11,7 @@ public class SceneObject extends SceneBehaviour {
     private SceneObject parent;
     private ArrayList<SceneObject> children;
     private ArrayList<Component> components;
+    boolean enabled;
 
     public SceneObject(String name, Transform transform, SceneObject parent) {
         this.name = name;
@@ -19,6 +20,7 @@ public class SceneObject extends SceneBehaviour {
         this.setParent(parent);
         this.children = new ArrayList();
         this.components = new ArrayList();
+        this.enabled = false;
     }
 
     public SceneObject() {
@@ -86,5 +88,9 @@ public class SceneObject extends SceneBehaviour {
         }
         this.parent = parent;
         parent.children.add(this);
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

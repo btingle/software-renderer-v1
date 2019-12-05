@@ -86,7 +86,7 @@ public class TerrainGenerator extends Component {
     }
 
     private void generateChunk(Vec2 chunkPos) {
-        System.out.println("Generating chunk: " + chunkPos);
+        //System.out.println("Generating chunk: " + chunkPos);
         Vec2 worldPos = new Vec2(chunkPos.x * chunkWidth, chunkPos.y * chunkWidth);
 
         Thread generationThread = new Thread(new Runnable() {
@@ -106,7 +106,7 @@ public class TerrainGenerator extends Component {
     }
 
     private void cullChunk(String positionHash) {
-        System.out.println("Culling chunk: " + positionHash);
+        //System.out.println("Culling chunk: " + positionHash);
         SceneObject chunk = chunkMap.remove(positionHash);
         scene.removeSceneObject(chunk);
     }

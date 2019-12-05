@@ -9,8 +9,8 @@ import Engine.Scene.Transform;
 
 public class Renderer extends Component {
 
-    Shader shader;
-    Mesh mesh;
+    public Shader shader;
+    public Mesh mesh;
 
     private RenderManager renderManager;
     private Transform transform;
@@ -29,6 +29,7 @@ public class Renderer extends Component {
 
     @Override
     protected void LateUpdate() {
+        if (mesh == null) return;
         //transform.setLocalRotation(transform.getLocalRotation().add(new Vec3(0, 0, 1)));
         //transform.setLocalPosition(transform.getLocalPosition().add(new Vec3(0, 0, 0.05f)));
         renderManager.pushDrawJob(mesh, shader, transform.getGlobalMatrix());

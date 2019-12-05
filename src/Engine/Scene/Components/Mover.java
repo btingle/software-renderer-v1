@@ -21,7 +21,7 @@ public class Mover extends Component {
 
     protected void Update() {
         //transform.setLocalRotation(transform.getLocalRotation().add(rotationPerFrame));
-        //transform.setLocalPosition(transform.getLocalPosition().add(movementPerFrame));
+        transform.setLocalPosition(transform.getLocalPosition().add(movementPerFrame));
     }
 
 }

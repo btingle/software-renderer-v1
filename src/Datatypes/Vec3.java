@@ -78,6 +78,14 @@ public class Vec3 {
         return x * v.x + y * v.y + z * v.z;
     }
 
+    public boolean lessThan(Vec3 o) {
+        return x < o.x && y < o.y && z < o.z;
+    }
+
+    public boolean greaterThan(Vec3 o) {
+        return x > o.x && y > o.y && z > o.z;
+    }
+
     public static Vec3 zero() { return new Vec3(0, 0, 0); }
 
     public static float distance(Vec3 a, Vec3 b) {

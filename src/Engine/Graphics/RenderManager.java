@@ -64,6 +64,8 @@ public class RenderManager {
 
     private CubemapShader skyboxShader = new CubemapShader(null);
 
+    private final int numThreads = 4;
+    private final int numCores = 2;
     ExecutorService threadPool;
 
     public RenderManager() {
@@ -83,7 +85,7 @@ public class RenderManager {
         fogMax = 100f;
         fogColor = clearColor;
 
-        threadPool = Executors.newFixedThreadPool(4);
+        threadPool = Executors.newFixedThreadPool(numThreads);
     }
 
     // params: ambient light attributes, color and intensity
@@ -171,11 +173,18 @@ public class RenderManager {
         drawJobs.add(new DrawJob(modelMatrix, mesh, shader));
     }
 
-    // called at the end of each frame
-    public void Update() {
+    public void Clear() {
         for (Framebuffer framebuffer : framebuffers) {
             framebuffer.clear(clearColor);
         }
+    }
+
+    long vertexStageTime = 0;
+    long fragmentStageTime = 0;
+
+    // called at the end of each frame
+    public void Update() {
+        Clear();
 
         for (CameraProperties camera : cameras) {
             DrawJob.viewProj = camera.projMatrix.multiply(camera.viewMatrix);
@@ -195,6 +204,10 @@ public class RenderManager {
                 //Rasterizer.SKIP_DEPTH_TEST = false;
             }
         }
+
+        //System.out.println("Took " + vertexStageTime + "ms for vertex processing, " + fragmentStageTime + "ms for fragment processing");
+
+        vertexStageTime = fragmentStageTime = 0;
 
         drawJobs.clear();
     }
@@ -266,13 +279,35 @@ public class RenderManager {
         // not multithreading it because it was pretty slow when I tried, if each thread is only given one
         // vertex to process at a time the thread switching overhead really kills the performance
         // need to process them in batches to mitigate this, but am too lazy to implement
-        for (int i = 0; i < mesh.numVertices(); i++) {
-            mesh.setTransformedVertex(i, shader.vertex(mesh.getVertex(i)));
+
+
+        int processAmount = mesh.numVertices() / numCores;
+
+        long sv = System.currentTimeMillis();
+        for (int i = 0; i < mesh.numVertices(); i += processAmount) {
+
+            int start = i;
+            int end = Math.min((i + processAmount), mesh.numVertices());
+
+            //System.out.println(start + ", " + end);
+
+            threadFutures.add(threadPool.submit(new Runnable() {
+                @Override
+                public void run() {
+                    processVerts(mesh, start, end, shader);
+                }
+            }));
         }
+
+        awaitFutures(threadFutures);
+        long ev = System.currentTimeMillis();
+
+        vertexStageTime += (ev - sv);
 
         // parallel processing and rasterization of each triangle in the mesh
         // using multithreading roughly doubles the speed of each draw call
         // ...which makes sense, because my laptop has two CPU cores
+        long sf = System.currentTimeMillis();
         for (int i = 0; i < mesh.numTriangles(); i++) {
             Vertex[] tri = mesh.getTriangle(i);
 
@@ -286,6 +321,15 @@ public class RenderManager {
 
         // blocks the main thread until all triangles have finished being drawn
         awaitFutures(threadFutures);
+        long ef = System.currentTimeMillis();
+
+        fragmentStageTime += (ef - sf);
+    }
+
+    private void processVerts(Mesh mesh, int start, int end, Shader shader) {
+        for (int i = start; i < end; i++) {
+            mesh.setTransformedVertex(i, shader.vertex(mesh.getVertex(i)));
+        }
     }
 
     private void awaitFutures(ArrayList<Future> threadFutures) {

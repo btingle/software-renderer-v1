@@ -17,21 +17,24 @@ public class Transform extends Component {
     private boolean calculateGlobalMatrix, calculateLocalMatrix;
     private Mat4 globalMatrix, localMatrix;
 
-    public Transform(Vec3 position, Vec3 rotation, Vec3 scale) {
-
-        this.translation = Mat4.translation(position);
-        this.rotation = Mat4.rotation(rotation);
-        this.scaling = Mat4.scaling(scale);
-
-        this.localPosition = position;
-        this.localRotation = rotation;
-        this.localScale = scale;
+    public Transform(Mat4 translation, Mat4 rotation, Mat4 scaling) {
+        this.translation = translation;
+        this.rotation = rotation;
+        this.scaling = scaling;
 
         calculateGlobalMatrix = calculateLocalMatrix = true;
     }
 
+    public Transform(Vec3 position, Vec3 rotation, Vec3 scale) {
+        this(Mat4.translation(position), Mat4.rotation(rotation), Mat4.scaling(scale));
+    }
+
     public Transform() {
         this(Vec3.zero(), Vec3.zero(), Vec3.constant(1));
+    }
+
+    public Transform(Transform other) {
+        this(new Mat4(other.translation), new Mat4(other.rotation), new Mat4(other.scaling));
     }
 
     public Mat4 getLocalMatrix() {
@@ -122,6 +125,12 @@ public class Transform extends Component {
 
     public void scale(Vec3 scaling) {
         this.scaling = this.scaling.multiply(Mat4.scaling(scaling));
+        calculateLocalMatrix = true;
+        toggleMatrixCalculateFlag();
+    }
+
+    public void lookAt(Vec3 target) {
+        this.rotation = Mat4.lookAtDir(getPosition(), target, up());
         calculateLocalMatrix = true;
         toggleMatrixCalculateFlag();
     }
