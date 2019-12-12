@@ -7,27 +7,27 @@ import java.util.ArrayList;
 public abstract class Shader {
 
     // built-in shader variables
-    Mat4 MVP, MV, VP, M, V, P, B;
-    Mat3 N;
+    protected Mat4 MVP, MV, VP, M, V, P, B;
+    protected Mat3 N;
     // N: Mat3 inverse of the transpose of model matrix, used for transforming normals
     // B: Mat4 of Mat3 of view matrix, aka the upper left 3x3 of the view matrix
 
-    float fogMin, fogMax;
-    Color fogColor;
+    protected float fogMin, fogMax;
+    protected Color fogColor;
 
-    Vec3 viewPosition;
-    Vec3 faceNormal;
+    protected Vec3 viewPosition;
+    protected Vec3 faceNormal;
 
-    Color ambientLightColor;
-    float ambientLightIntensity;
+    protected Color ambientLightColor;
+    protected float ambientLightIntensity;
 
-    ArrayList<Vec3> pointLights;
-    ArrayList<Color> pointLightColors;
-    ArrayList<Float> pointLightIntensities;
+    protected ArrayList<Vec3> pointLights;
+    protected ArrayList<Color> pointLightColors;
+    protected ArrayList<Float> pointLightIntensities;
 
-    Vec3 directionalLight;
-    Color directionalLightColor;
-    float directionalLightIntensity;
+    protected Vec3 directionalLight;
+    protected Color directionalLightColor;
+    protected float directionalLightIntensity;
 
     abstract Vertex vertex(Vertex in);
     abstract Color fragment(Vertex in);

@@ -15,8 +15,8 @@ public class GameMain {
     
     public static void InitializeScene(Scene scene) {
 
-        SceneObject lightObject, cameraObject, planeParent, planeObject, groundObject, enemyObject;
-        Transform lightTransform, cameraTransform, planeParentTransform, planeTransform, groundTransform;
+        SceneObject lightObject, cameraObject, planeParent, planeObject, coreObject;
+        Transform lightTransform, cameraTransform, planeParentTransform, planeTransform;
         Camera cameraComponent;
         LightSettings lightSettingsComponent;
         Renderer planeRender, groundRender, groundRender2, enemyRender;
@@ -31,10 +31,9 @@ public class GameMain {
         planeParent = new SceneObject("Plane Parent", planeParentTransform, null);
         planeTransform = new Transform(new Vec3(0, 0, 0), new Vec3(0, 0, 180), Vec3.constant(1));
         planeObject = new SceneObject("Model", planeTransform, planeParent);
-        cameraTransform = new Transform(new Vec3(0, -3, -10), new Vec3(0, 0, 0), Vec3.constant(1));
+        cameraTransform = new Transform(new Vec3(0, -4, -12), new Vec3(0, 0, 0), Vec3.constant(1));
         cameraObject = new SceneObject("Camera", cameraTransform, planeParent);
-        groundTransform = new Transform(new Vec3(0, 0, 0), new Vec3(0, 0, 0), Vec3.constant(1));
-        groundObject = new SceneObject("Ground", groundTransform, null);
+        coreObject = new SceneObject("Ground", new Transform(), null);
 
         cameraComponent = new Camera(0, false, (float) Math.toRadians(90), near, far);
         cameraObject.AddComponent(cameraComponent);
@@ -67,26 +66,14 @@ public class GameMain {
         planeParent.AddComponent(bbox);
         planeParent.AddComponent(new Shooter(4, Projectile.EnemyLayer, 5));
         planeParent.AddComponent(new PlaneControl());
-        groundObject.AddComponent(terrainGenerator);
-        groundObject.AddComponent(new TurretSpawner(planeParentTransform));
-
-        //enemyObject.AddComponent(enemyRender);
-        //enemyObject.AddComponent(new Looker(planeParentTransform));
-        //cameraObject.AddComponent(new FreeCam(1));
-
-        /*String[] cubemapFilenames = new String[] {
-                "badomen_lf.jpg", "badomen_dn.jpg", "badomen_ft.jpg", "badomen_rt.jpg", "badomen_up.jpg", "badomen_bk.jpg"
-        };
-        Cubemap skybox = new Cubemap(cubemapFilenames);
-        Skybox skyboxComponent = new Skybox(skybox);
-        planeObject.AddComponent(skyboxComponent);*/
+        coreObject.AddComponent(terrainGenerator);
+        coreObject.AddComponent(new TurretSpawner(planeParentTransform));
 
         scene.addSceneObject(lightObject);
         scene.addSceneObject(cameraObject);
         scene.addSceneObject(planeParent);
         scene.addSceneObject(planeObject);
-        scene.addSceneObject(groundObject);
-        //scene.addSceneObject(enemyObject);
+        scene.addSceneObject(coreObject);
     }
     
 }

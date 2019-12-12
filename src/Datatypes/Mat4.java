@@ -180,7 +180,7 @@ public class Mat4 {
         Mat4 rotationY = Mat4._rotationY((float) Math.toRadians(eulerAngles.y));
         Mat4 rotationZ = Mat4._rotationZ((float) Math.toRadians(eulerAngles.z));
 
-        return rotationZ.multiply(rotationX).multiply(rotationY);
+        return rotationY.multiply(rotationX).multiply(rotationZ);
     }
 
     public static Mat4 _rotationX(float angle) {

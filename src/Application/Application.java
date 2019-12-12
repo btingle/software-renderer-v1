@@ -26,6 +26,7 @@ public class Application {
         BufferedImage image;
 
         boolean paused = false;
+        float fbScale = 1;
 
         public ApplicationWindow(String name, int width, int height) {
             super(name);
@@ -38,8 +39,18 @@ public class Application {
             setFocusable(true);
             requestFocus();
 
-            setSize(width, height);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            /*GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            GraphicsDevice device = env.getDefaultScreenDevice();
+            Rectangle devBounds = device.getFullScreenWindow().getBounds();*/
+
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+            fbScale = Math.min(screenSize.width / (float) width, screenSize.height / (float) height);
+            //fbScale = 2;
+            setSize((int)(width * fbScale), (int)(height * fbScale));
+
             setVisible(true);
         }
 
@@ -47,6 +58,7 @@ public class Application {
         public void paint(Graphics g) {
             Graphics2D g2 = (Graphics2D) g;
 
+            g2.scale(fbScale, fbScale);
             g2.drawImage(image, 0, 0, null);
 
             g2.setColor(Color.WHITE);
@@ -95,6 +107,7 @@ public class Application {
         Input.Initialize(window);
 
         while ((!Input.GetKeyDown("Escape")) && !exitGame) {
+            long start = System.currentTimeMillis();
 
             Input.Update();
 
@@ -103,6 +116,10 @@ public class Application {
             renderManager.Update();
 
             window.updateScreen(defaultFB);
+
+            long end = System.currentTimeMillis();
+
+            System.out.println("FPS: " + 1000 / (end - start));
 
             if (Input.GetKeyDown("P")) {
                 window.paused = true;
@@ -125,6 +142,10 @@ public class Application {
         renderManager.terminate();
         window.timeText = "Game Over!";
         window.updateScreen(defaultFB);
+    }
+
+    public static void PauseGame() {
+        window.paused = true;
     }
 
     public static void EndGame() {

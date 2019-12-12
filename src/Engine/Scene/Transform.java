@@ -80,8 +80,6 @@ public class Transform extends Component {
     }
 
     public Vec3 getLocalPosition() { return getLocalMatrix().multiply(new Vec3()); }
-    //public Vec3 getLocalRotation() { return localRotation; }
-    //public Vec3 getLocalScale() { return localScale; }
 
     private void toggleMatrixCalculateFlag() {
         calculateGlobalMatrix = true;
@@ -93,22 +91,6 @@ public class Transform extends Component {
 
     public Vec3 getPosition() {
         return getGlobalMatrix().multiply(Vec3.zero());
-    }
-
-    public Vec3 getRotation() {
-        SceneObject parent = object.getParent();
-        if (parent != null) {
-            return localRotation.add(parent.getTransform().getRotation());
-        }
-        return localRotation;
-    }
-
-    public Vec3 getScale() {
-        SceneObject parent = object.getParent();
-        if (parent != null) {
-            return localScale.mul(parent.getTransform().getScale());
-        }
-        return localScale;
     }
 
     public void rotate(Vec3 rotation) {
@@ -129,8 +111,15 @@ public class Transform extends Component {
         toggleMatrixCalculateFlag();
     }
 
+    // rotates this transform to look at a target
+    // rotates only on the x and y axes
     public void lookAt(Vec3 target) {
-        this.rotation = Mat4.lookAtDir(getPosition(), target, up());
+        Vec3 dv = target.sub(getPosition());
+        double yaw = Math.toDegrees(-Math.atan2(dv.x, dv.z));
+        double zLength = Math.sqrt(dv.x*dv.x + dv.z*dv.z);
+        double pitch = Math.toDegrees(Math.atan2(dv.y, zLength));
+
+        this.rotation = Mat4.rotation(new Vec3((float) pitch, (float) yaw, 0));
         calculateLocalMatrix = true;
         toggleMatrixCalculateFlag();
     }

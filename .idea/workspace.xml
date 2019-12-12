@@ -1,40 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="413ProjectP2:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="64efb90a-1c76-4eee-bdaf-bc344a8ea2a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/CollisionBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/Looker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/Projectile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/Shooter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/TurretSpawner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Application/Application$ApplicationWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Application/Application$ApplicationWindow.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Application/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Application/Application.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Datatypes/Mat4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Datatypes/Mat4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Datatypes/Vec3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Datatypes/Vec3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Graphics/RenderManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Graphics/RenderManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Graphics/RenderManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Graphics/RenderManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/Components/Mover.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/Components/Mover.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/Components/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/Components/Renderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/Scene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/Scene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/SceneObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/SceneObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Graphics/Shader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Graphics/Shader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/Transform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Engine/Scene/Transform.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Game/GameMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Game/GameMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Game/PlaneControl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Game/PlaneControl$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Game/PlaneControl$MutableInt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Game/PlaneControl$MutableInt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Game/PlaneControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Game/PlaneControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/413ProjectP2/Game/TerrainGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/413ProjectP2/Game/TerrainGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Datatypes/Mat4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Datatypes/Mat4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Datatypes/Vec3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Datatypes/Vec3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Graphics/RenderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Graphics/RenderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Scene/Components/Mover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Scene/Components/Mover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Scene/Components/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Scene/Components/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Scene/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Engine/Scene/SceneObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Scene/SceneObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Engine/Graphics/Shader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Graphics/Shader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Engine/Scene/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/Scene/Transform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/GameMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/GameMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/PlaneControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/PlaneControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/TerrainGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/TerrainGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tank.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,9 +48,9 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Engine" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -104,6 +95,21 @@
       <option name="presentableId" value="Default" />
       <updated>1573779466937</updated>
     </task>
+    <task id="LOCAL-00001" summary="Finished Game Demo">
+      <created>1575533787480</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575533787482</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Finished Game Demo">
+      <created>1575533825099</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575533825099</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,10 +117,16 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Finished Game Demo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Game Demo" />
   </component>
 </project>

@@ -109,8 +109,8 @@ public class Vec3 {
         return a.add(delta.mul(t));
     }
 
-    public static Vec3 Reflect(Vec3 d, Vec3 n) {
-        return d.sub(n.mul(2 * d.dot(n)));
+    public static Vec3 orthoNormalize(Vec3 a, Vec3 b) {
+        return b.sub(b.mul( b.dot(a) / b.dot(b) ));
     }
 
     public static Vec3 constant(float c) { return new Vec3(c, c, c); }
